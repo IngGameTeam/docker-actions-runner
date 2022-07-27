@@ -8,7 +8,7 @@ runs:
       run: |
         #!/bin/bash
         repo=$(basename ${{ inputs.repo }} /)
-        $(docker image rmi $repo && docker build . -t $repo && docker run --name $repo $repo) &
+        $(docker rm -f $(docker ps -aq --filter ancestor=$repo) && docker build . -t $repo && docker run --name $repo $repo) &
 inputs:
   repo:
     required: true
