@@ -7,7 +7,7 @@ runs:
     - shell: sh
       run: |
         #!/bin/bash
-        repo=$(basename ${{ inputs.repo }} /)
+        repo=runner-$(basename ${{ inputs.repo }} /)
         docker image rm -f $repo || true
         $(docker build . -t $repo && docker run --name $repo $repo) &
 inputs:
