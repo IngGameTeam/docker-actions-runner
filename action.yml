@@ -8,7 +8,7 @@ runs:
       run: |
         #!/bin/bash
 
-        $(docker image rm ${{ inputs.repo }} docker build . -t ${{ inputs.repo }} && docker run --name ${{ inputs.repo }} ${{ inputs.repo }}) &
+        $(docker image rm ${{ inputs.repo }} && docker build . -t ${{ inputs.repo }} && docker run --name ${{ inputs.repo }} ${{ inputs.repo }}) &
 inputs:
   repo:
     required: true
