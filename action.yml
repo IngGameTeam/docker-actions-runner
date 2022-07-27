@@ -1,0 +1,15 @@
+# /action.yml
+name: 'docker-actions-runner'
+description: ''
+runs:
+  using: "composite"
+  steps: 
+    - shell: sh
+      run: |
+        #!/bin/bash
+
+        $(docker image rm ${{ inputs.repo }} docker build . -t ${{ inputs.repo }} && docker run --name ${{ inputs.repo }} ${{ inputs.repo }}) &
+inputs:
+  repo:
+    required: true
+  
